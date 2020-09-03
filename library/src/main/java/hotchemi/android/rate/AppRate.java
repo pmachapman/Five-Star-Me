@@ -6,7 +6,6 @@ import android.view.View;
 
 import java.util.Date;
 
-import static hotchemi.android.rate.DialogManager.create;
 import static hotchemi.android.rate.PreferenceHelper.getInstallDate;
 import static hotchemi.android.rate.PreferenceHelper.getIsAgreeShowDialog;
 import static hotchemi.android.rate.PreferenceHelper.getLaunchTimes;
@@ -182,7 +181,11 @@ public final class AppRate {
 
     public void showRateDialog(Activity activity) {
         if (!activity.isFinishing()) {
-            create(activity, options).show();
+            //Display Dialog
+            InAppReview instance = new InAppReview(activity);
+            instance.startRequest();
+
+            PreferenceHelper.setAgreeShowDialog(context, false);
         }
     }
 
