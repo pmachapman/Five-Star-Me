@@ -4,7 +4,7 @@ Five-Star-Me
 Five-Star-Me is a library to help you promote your android app by prompting users to rate the app after using it for a few days.<br>
 It uses Android's [In-App Review API](https://developer.android.com/guide/playcore/in-app-review) and is based upon @hotchemi's [Android-Rate](https://github.com/hotchemi/Android-Rate) library.
 
->Note: In order to test, the API requires the app be uploaded to the play store - *It connot be tested locally*. Read the testing guide [here](https://developer.android.com/guide/playcore/in-app-review/test).
+>Note: In order to test, the API requires that the app be uploaded to the play store - *It connot be tested locally*. Read the testing guide [here](https://developer.android.com/guide/playcore/in-app-review/test).
 
 ![screen shot](screen-shot.gif)
 
@@ -12,22 +12,27 @@ It uses Android's [In-App Review API](https://developer.android.com/guide/playco
 
 You can download from jitpack.
 
+### Step 1: 
+Add this to project (root) build.gradle.
+
 ```groovy
 allprojects {
-	repositories {
-		...
-		maven { url 'https://jitpack.io' }
-	}
+  repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+  }
 }
 ```
-
-${latest.version} is ![eou](https://jitpack.io/#numerative/Five-Star-Me/2.0.0)
+### Step 2:
+Add the following dependency to your module (app) level build.gradle.
 
 ```groovy
 dependencies {
   implementation 'com.github.numerative:Five-Star-Me:{latest.version}'
 }
 ```
+
+${latest.version} is [![](https://jitpack.io/v/numerative/Five-Star-Me.svg)](https://jitpack.io/#numerative/Five-Star-Me)
 
 ## Usage
 
@@ -85,14 +90,10 @@ Please try the [sample](https://github.com/numerative/Five-Star-Me/tree/master/s
 To test, provide `applicationId` to sample module's `build.gradle` and upload it to one of your test tracks on google play store.
 ```groovy
 android {
-    compileSdkVersion 29
 
     defaultConfig {
         applicationId "com.exmaple.yourappid"
-        minSdkVersion 16
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        ...
     }
 ```
 
@@ -103,6 +104,8 @@ android {
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+<hr>
 
 ## License
 ```
