@@ -13,8 +13,19 @@ It uses Android's [In-App Review API](https://developer.android.com/guide/playco
 You can download from jitpack.
 
 ```groovy
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+
+${latest.version} is ![eou](https://jitpack.io/#numerative/Five-Star-Me/2.0.0)
+
+```groovy
 dependencies {
-  implementation 'com.github.hotchemi:android-rate:{latest.version}'
+  implementation 'com.github.numerative:Five-Star-Me:{latest.version}'
 }
 ```
 
