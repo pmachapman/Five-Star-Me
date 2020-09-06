@@ -1,10 +1,10 @@
-package hotchemi.android.rate;
+package five.star.me;
 
 import android.net.Uri;
 import android.test.AndroidTestCase;
 
 /**
- * Unit test for {@link hotchemi.android.rate.UriHelper}
+ * Unit test for {@link five.star.me.UriHelper}
  */
 public class UriHelperTest extends AndroidTestCase {
 

@@ -1,21 +1,20 @@
-Android-Rate
+Five-Star-Me
 ============
 
-[![Build Status](https://travis-ci.org/hotchemi/Android-Rate.png?branch=master)](https://travis-ci.org/hotchemi/Android-Rate)
+Five-Star-Me is a library to help you promote your android app by prompting users to rate the app after using it for a few days.<br>
+It uses Android's [In-App Review API](https://developer.android.com/guide/playcore/in-app-review) and is based upon @hotchemi's [Android-Rate](https://github.com/hotchemi/Android-Rate) library.
 
-Android-Rate is a library to help you promote your android app by prompting users to rate the app after using it for a few days.
+>Note: In order to test, the API requires the app be uploaded to the play store - *It connot be tested locally*. Read the testing guide [here](https://developer.android.com/guide/playcore/in-app-review/test).
 
-![screen shot](http://i.gyazo.com/286342ba215a515f2f443a7ce996cc92.gif)
+![screen shot](screen-shot.gif)
 
 ## Install
 
-You can download from maven central.
-
-${latest.version} is ![Maven Badges](https://maven-badges.herokuapp.com/maven-central/com.github.hotchemi/android-rate/badge.svg)
+You can download from jitpack.
 
 ```groovy
 dependencies {
-  compile 'com.github.hotchemi:android-rate:{latest.version}'
+  implementation 'com.github.hotchemi:android-rate:{latest.version}'
 }
 ```
 
@@ -31,104 +30,60 @@ protected void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
   setContentView(R.layout.activity_main);
 
-  AppRate.with(this)
+  FiveStarMe.with(this)
       .setInstallDays(0) // default 10, 0 means install day.
       .setLaunchTimes(3) // default 10
-      .setRemindInterval(2) // default 1
-      .setShowLaterButton(true) // default true
       .setDebug(false) // default false
-      .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
-          @Override
-          public void onClickButton(int which) {
-              Log.d(MainActivity.class.getName(), Integer.toString(which));
-          }
-      })
       .monitor();
 
   // Show a dialog if meets conditions
-  AppRate.showRateDialogIfMeetsConditions(this);
+  FiveStarMe.showRateDialogIfMeetsConditions(this);
 }
 ```
 
 The default conditions to show rate dialog is as below:
 
-1. App is launched more than 10 days later than installation. Change via `AppRate#setInstallDays(int)`.
-2. App is launched more than 10 times. Change via `AppRate#setLaunchTimes(int)`.
-3. App is launched more than 2 days after neutral button clicked. Change via `AppRate#setRemindInterval(int)`.
-4. App shows neutral dialog(Remind me later) by default. Change via `setShowLaterButton(boolean)`.
-5. To specify the callback when the button is pressed. The same value as the second argument of `DialogInterface.OnClickListener#onClick` will be passed in the argument of `onClickButton`.
-6. Setting `AppRate#setDebug(boolean)` will ensure that the rating request is shown each time the app is launched. **This feature is only development!**.
+1. App is launched more than 10 days later than installation. Change via `FiveStarMe#setInstallDays(int)`.
+2. App is launched more than 10 times. Change via `FiveStarMe#setLaunchTimes(int)`.
+3. Setting `FiveStarMe#setDebug(boolean)` will ensure that the rating request is shown each time the app is launched. **This feature is only development!**.
 
 ### Clear show dialog flag
 
-When you want to show the dialog again, call `AppRate#clearAgreeShowDialog()`.
+When you want to show the dialog again, call `FiveStarMe#clearAgreeShowDialog()`.
 
 ```java
-AppRate.with(this).clearAgreeShowDialog();
+FiveStarMe.with(this).clearAgreeShowDialog();
 ```
 
 ### When the button presses on
 
-call `AppRate#showRateDialog(Activity)`.
+call `FiveStarMe#showRateDialog(Activity)`.
 
 ```java
-AppRate.with(this).showRateDialog(this);
+FiveStarMe.with(this).showRateDialog(this);
 ```
-
-### Set custom view
-
-call `AppRate#setView(View)`.
-
-```java
-LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-View view = inflater.inflate(R.layout.custom_dialog, (ViewGroup)findViewById(R.id.layout_root));
-AppRate.with(this).setView(view).monitor();
-```
-
-### Custom dialog
-
-If you want to use your own dialog labels, override string xml resources on your application.
-
-```xml
-<resources>
-    <string name="rate_dialog_title">Rate this app</string>
-    <string name="rate_dialog_message">If you enjoy playing this app, would you mind taking a moment to rate it? It won\'t take more than a minute. Thanks for your support!</string>
-    <string name="rate_dialog_ok">Rate It Now</string>
-    <string name="rate_dialog_cancel">Remind Me Later</string>
-    <string name="rate_dialog_no">No, Thanks</string>
-</resources>
-```
-
-## Language
-
-Android-Rate currently supports the following languages:
-
-- English
-- Czech
-- German
-- Spanish
-- Basque
-- Persian
-- French
-- Italy
-- Hebrew
-- Japanese
-- Korean
-- Polish
-- Portuguese
-- Russian
-- Turkish
-- Ukrainian
-- Vietnamese
-- Chinese
 
 ## Support
 
-Android-Rate supports API level 9 and up.
+Five-Star-Me supports API level 16 and up.
 
 ## Sample
 
-Please try to move the [sample](https://github.com/hotchemi/Android-Rate/tree/master/sample).
+Please try the [sample](https://github.com/numerative/Five-Star-Me/tree/master/sample) app. 
+
+To test, provide `applicationId` to sample module's `build.gradle` and upload it to one of your test tracks on google play store.
+```groovy
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        applicationId "com.exmaple.yourappid"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+    }
+```
 
 ## Contribute
 
@@ -137,3 +92,29 @@ Please try to move the [sample](https://github.com/hotchemi/Android-Rate/tree/ma
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## License
+```
+The MIT License (MIT)
+
+Copyright (c) 2015 Shintaro Katafuchi
+Copyright (c) 2020 Michael Hathi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+```

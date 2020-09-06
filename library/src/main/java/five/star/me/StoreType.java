@@ -1,4 +1,4 @@
-package hotchemi.android.rate;
+package five.star.me;
 
 public enum StoreType {
     GOOGLEPLAY,

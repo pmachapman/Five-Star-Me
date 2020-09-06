@@ -1,4 +1,4 @@
-package hotchemi.android.rate
+package five.star.me
 
 import android.app.Activity
 import android.util.Log

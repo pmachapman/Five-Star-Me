@@ -1,11 +1,11 @@
-package hotchemi.android.rate;
+package five.star.me;
 
 import android.content.Context;
 import android.content.Intent;
 
-import static hotchemi.android.rate.UriHelper.getGooglePlay;
-import static hotchemi.android.rate.UriHelper.getAmazonAppstore;
-import static hotchemi.android.rate.UriHelper.isPackageExists;
+import static five.star.me.UriHelper.getAmazonAppstore;
+import static five.star.me.UriHelper.getGooglePlay;
+import static five.star.me.UriHelper.isPackageExists;
 
 final class IntentHelper {
 

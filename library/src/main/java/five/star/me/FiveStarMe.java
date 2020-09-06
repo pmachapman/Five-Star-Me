@@ -1,4 +1,4 @@
-package hotchemi.android.rate;
+package five.star.me;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,16 +6,16 @@ import android.view.View;
 
 import java.util.Date;
 
-import static hotchemi.android.rate.PreferenceHelper.getInstallDate;
-import static hotchemi.android.rate.PreferenceHelper.getIsAgreeShowDialog;
-import static hotchemi.android.rate.PreferenceHelper.getLaunchTimes;
-import static hotchemi.android.rate.PreferenceHelper.getRemindInterval;
-import static hotchemi.android.rate.PreferenceHelper.isFirstLaunch;
-import static hotchemi.android.rate.PreferenceHelper.setInstallDate;
+import static five.star.me.PreferenceHelper.getInstallDate;
+import static five.star.me.PreferenceHelper.getIsAgreeShowDialog;
+import static five.star.me.PreferenceHelper.getLaunchTimes;
+import static five.star.me.PreferenceHelper.getRemindInterval;
+import static five.star.me.PreferenceHelper.isFirstLaunch;
+import static five.star.me.PreferenceHelper.setInstallDate;
 
-public final class AppRate {
+public final class FiveStarMe {
 
-    private static AppRate singleton;
+    private static FiveStarMe singleton;
 
     private final Context context;
 
@@ -29,15 +29,15 @@ public final class AppRate {
 
     private boolean isDebug = false;
 
-    private AppRate(Context context) {
+    private FiveStarMe(Context context) {
         this.context = context.getApplicationContext();
     }
 
-    public static AppRate with(Context context) {
+    public static FiveStarMe with(Context context) {
         if (singleton == null) {
-            synchronized (AppRate.class) {
+            synchronized (FiveStarMe.class) {
                 if (singleton == null) {
-                    singleton = new AppRate(context);
+                    singleton = new FiveStarMe(context);
                 }
             }
         }
@@ -56,118 +56,138 @@ public final class AppRate {
         return new Date().getTime() - targetDate >= threshold * 24 * 60 * 60 * 1000;
     }
 
-    public AppRate setLaunchTimes(int launchTimes) {
+    public FiveStarMe setLaunchTimes(int launchTimes) {
         this.launchTimes = launchTimes;
         return this;
     }
 
-    public AppRate setInstallDays(int installDate) {
+    public FiveStarMe setInstallDays(int installDate) {
         this.installDate = installDate;
         return this;
     }
 
-    public AppRate setRemindInterval(int remindInterval) {
+    @Deprecated
+    public FiveStarMe setRemindInterval(int remindInterval) {
         this.remindInterval = remindInterval;
         return this;
     }
 
-    public AppRate setShowLaterButton(boolean isShowNeutralButton) {
+    @Deprecated
+    public FiveStarMe setShowLaterButton(boolean isShowNeutralButton) {
         options.setShowNeutralButton(isShowNeutralButton);
         return this;
     }
 
-    public AppRate setShowNeverButton(boolean isShowNeverButton) {
+    @Deprecated
+    public FiveStarMe setShowNeverButton(boolean isShowNeverButton) {
         options.setShowNegativeButton(isShowNeverButton);
         return this;
     }
 
-    public AppRate setShowTitle(boolean isShowTitle) {
+    @Deprecated
+    public FiveStarMe setShowTitle(boolean isShowTitle) {
         options.setShowTitle(isShowTitle);
         return this;
     }
 
-    public AppRate clearAgreeShowDialog() {
+    public FiveStarMe clearAgreeShowDialog() {
         PreferenceHelper.setAgreeShowDialog(context, true);
         return this;
     }
 
-    public AppRate clearSettingsParam() {
+    @Deprecated
+    public FiveStarMe clearSettingsParam() {
         PreferenceHelper.setAgreeShowDialog(context, true);
         PreferenceHelper.clearSharedPreferences(context);
         return this;
     }
 
-    public AppRate setAgreeShowDialog(boolean clear) {
+
+    private FiveStarMe setAgreeShowDialog(boolean clear) {
         PreferenceHelper.setAgreeShowDialog(context, clear);
         return this;
     }
 
-    public AppRate setView(View view) {
+    @Deprecated
+    public FiveStarMe setView(View view) {
         options.setView(view);
         return this;
     }
 
-    public AppRate setOnClickButtonListener(OnClickButtonListener listener) {
+    @Deprecated
+    public FiveStarMe setOnClickButtonListener(OnClickButtonListener listener) {
         options.setListener(listener);
         return this;
     }
 
-    public AppRate setTitle(int resourceId) {
+    @Deprecated
+    public FiveStarMe setTitle(int resourceId) {
         options.setTitleResId(resourceId);
         return this;
     }
 
-    public AppRate setTitle(String title) {
+    @Deprecated
+    public FiveStarMe setTitle(String title) {
         options.setTitleText(title);
         return this;
     }
 
-    public AppRate setMessage(int resourceId) {
+    @Deprecated
+    public FiveStarMe setMessage(int resourceId) {
         options.setMessageResId(resourceId);
         return this;
     }
 
-    public AppRate setMessage(String message) {
+    @Deprecated
+    public FiveStarMe setMessage(String message) {
         options.setMessageText(message);
         return this;
     }
 
-    public AppRate setTextRateNow(int resourceId) {
+    @Deprecated
+    public FiveStarMe setTextRateNow(int resourceId) {
         options.setTextPositiveResId(resourceId);
         return this;
     }
 
-    public AppRate setTextRateNow(String positiveText) {
+    @Deprecated
+    public FiveStarMe setTextRateNow(String positiveText) {
         options.setPositiveText(positiveText);
         return this;
     }
 
-    public AppRate setTextLater(int resourceId) {
+    @Deprecated
+    public FiveStarMe setTextLater(int resourceId) {
         options.setTextNeutralResId(resourceId);
         return this;
     }
 
-    public AppRate setTextLater(String neutralText) {
+    @Deprecated
+    public FiveStarMe setTextLater(String neutralText) {
         options.setNeutralText(neutralText);
         return this;
     }
 
-    public AppRate setTextNever(int resourceId) {
+    @Deprecated
+    public FiveStarMe setTextNever(int resourceId) {
         options.setTextNegativeResId(resourceId);
         return this;
     }
 
-    public AppRate setTextNever(String negativeText) {
+    @Deprecated
+    public FiveStarMe setTextNever(String negativeText) {
         options.setNegativeText(negativeText);
         return this;
     }
 
-    public AppRate setCancelable(boolean cancelable) {
+    @Deprecated
+    public FiveStarMe setCancelable(boolean cancelable) {
         options.setCancelable(cancelable);
         return this;
     }
 
-    public AppRate setStoreType(StoreType appstore) {
+    @Deprecated
+    public FiveStarMe setStoreType(StoreType appstore) {
         options.setStoreType(appstore);
         return this;
     }
@@ -185,7 +205,7 @@ public final class AppRate {
             InAppReview instance = new InAppReview(activity);
             instance.startRequest();
 
-            PreferenceHelper.setAgreeShowDialog(context, false);
+            setAgreeShowDialog(false);
         }
     }
 
@@ -212,7 +232,7 @@ public final class AppRate {
         return isDebug;
     }
 
-    public AppRate setDebug(boolean isDebug) {
+    public FiveStarMe setDebug(boolean isDebug) {
         this.isDebug = isDebug;
         return this;
     }

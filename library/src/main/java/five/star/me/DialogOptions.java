@@ -1,4 +1,4 @@
-package hotchemi.android.rate;
+package five.star.me;
 
 import android.content.Context;
 import android.view.View;
