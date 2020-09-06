@@ -8,6 +8,8 @@ It uses Android's [In-App Review API](https://developer.android.com/guide/playco
 
 ![screen shot](screen-shot.gif)
 
+![screen shot2](screen-shot2.jpg)
+
 ## Install
 
 You can download from jitpack.
