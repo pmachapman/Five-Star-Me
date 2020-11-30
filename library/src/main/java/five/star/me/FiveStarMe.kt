@@ -11,6 +11,7 @@ class FiveStarMe private constructor(context: Context) {
     private var installDate = 10
     private var launchTimes = 10
     private var remindInterval = 1
+    private var callback: (() -> Unit)? = null
     var isDebug = false
         private set
 
@@ -21,6 +22,15 @@ class FiveStarMe private constructor(context: Context) {
 
     fun setInstallDays(installDate: Int): FiveStarMe {
         this.installDate = installDate
+        return this
+    }
+
+    /**
+     * The callback is invoked when the Review Prompt is displayed.
+     * Use setCallback for analytics purposes.
+     */
+    fun setCallback(callback: () -> Unit): FiveStarMe {
+        this.callback = callback
         return this
     }
 
@@ -162,6 +172,7 @@ class FiveStarMe private constructor(context: Context) {
             val instance = InAppReview(activity)
             instance.startRequest()
             setAgreeShowDialog(false)
+            callback?.invoke()
         }
     }
 
