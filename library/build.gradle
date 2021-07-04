@@ -6,16 +6,16 @@ apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.numerative'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 29
+        minSdkVersion 21
+        targetSdkVersion 30
     }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.5.20"
     //Play core
-    implementation 'com.google.android.play:core:1.8.0'
+    implementation 'com.google.android.play:core:1.10.0'
     implementation 'com.google.android.play:core-ktx:1.8.1'
 }
