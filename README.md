@@ -83,7 +83,7 @@ FiveStarMe.with(this).showRateDialog(this);
 
 ## Support
 
-Five-Star-Me supports API level 16 and up.
+Five-Star-Me supports API level 21 and up.
 
 ## Sample
 
