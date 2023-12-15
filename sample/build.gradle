@@ -20,6 +20,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'hotchemi.android.rate.sample'
 }
 
 repositories {
